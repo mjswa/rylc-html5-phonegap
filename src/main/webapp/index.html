@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="rylc">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
+    <!-- make page testable for jasmine ui -->
+    <script type="text/javascript">eval(sessionStorage.jasmineui);</script>
+
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="lib/require.js" data-main="main"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <title>RYLC</title>
+</head>
+<body>
+
+<div id="loginPage" data-role="page" ngm-shared-controller="auth:rylc.AuthenticationController">
+    <div data-role="header">
+        <h1>RYLC - Login</h1>
+    </div>
+    <div data-role="content">
+        <div class="error" ngm-if="auth.errorMessage">{{auth.errorMessage}}</div>
+        <form data-ajax="false" ng-submit="auth.login()" name="loginForm">
+            <div data-role="fieldcontain">
+                <label for="loginPage_username">Server</label>
+                <input type="text" ng-model="auth.server" id="loginPage_server">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="loginPage_username">Benutzername</label>
+                <input type="text" ng-model="auth.username" id="loginPage_username">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="loginPage_password">Passwort</label>
+                <input type="password" ng-model="auth.password" id="loginPage_password">
+            </div>
+            <input type="submit" class="login" value="Login" ng-disabled="!auth.loginPossible()">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
