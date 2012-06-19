@@ -1,5 +1,5 @@
 define(function () {
-  function RentalController($scope, rentalService, backendService, utilsService) {
+  function RentalController($scope, rentalService, backendService, utilsService, phonegapService) {
     var SUCCESS_MESSAGE = "Bestellung erfolgreich entgegengenommen.";
 
     $scope.clearMessages = function () {
@@ -72,9 +72,34 @@ define(function () {
           $scope.navigateTo('back:welcomePage');
         });
     };
+
+    $scope.scanPromo = function () {
+      afterScan(phonegapService.scan());
+    };
+
+    function afterScan(scanResult) {
+      scanResult.then(function (promoCode) {
+        afterPromoCheck(backendService.promo(promoCode));
+      }, function (scanError) {
+        if (!scanError.canceled) {
+          $scope.successMessage = '';
+          $scope.errorMessage = 'Fehler beim Scan';
+        }
+      });
+    }
+
+    function afterPromoCheck(promoResult) {
+      promoResult.then(function (promoSuccess) {
+        $scope.successMessage = promoSuccess;
+        $scope.errorMessage = '';
+      }, function (promoError) {
+        $scope.successMessage = '';
+        $scope.errorMessage = promoError;
+      });
+    }
   }
 
-  RentalController.$inject = ['$scope', 'rentalService', 'backendService', 'utilsService'];
+  RentalController.$inject = ['$scope', 'rentalService', 'backendService', 'utilsService', 'phonegapService'];
 
   return RentalController;
 });

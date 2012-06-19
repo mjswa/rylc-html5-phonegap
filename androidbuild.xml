@@ -1,0 +1,21 @@
+<project name="androidbuild">
+    <property name="www.dir" value="../rylc-android-phonegap/assets/www"/>
+
+    <target name="clearContainer">
+        <delete includeEmptyDirs="true">
+            <fileset dir="${www.dir}" includes="**/*" excludes="cordova*.js, .gitignore"/>
+        </delete>
+    </target>
+
+    <target name="deployProxy" description="installs the phonegap proxy" depends="clearContainer">
+        <copy toDir="${www.dir}">
+            <zipfileset src="misc/phonegapproxy-app.zip"/>
+        </copy>
+    </target>
+
+    <target name="deployRylc" description="installs the rylc-html5 sources" depends="clearContainer">
+        <copy toDir="${www.dir}">
+            <fileset dir="target/html5" includes="**/*"/>
+        </copy>
+    </target>
+</project>

@@ -149,6 +149,16 @@ define(function () {
       });
     }
 
+    function promo(promoCode) {
+      var res = $q.defer();
+      if (promoCode!=null && promoCode.indexOf('rylc')===0) {
+        res.resolve('Code '+promoCode+' akzeptiert');
+      } else {
+        res.reject('Code '+promoCode+' ungültig');
+      }
+      return res.promise;
+    }
+
     return {
       carTypes:carTypes,
       carTypesBackground:carTypesBackground,
@@ -161,7 +171,8 @@ define(function () {
       login:login,
       setCredentials:setCredentials,
       authenticatedCustomer:authenticatedCustomer,
-      logout:logout
+      logout:logout,
+      promo:promo
     }
   }
 

@@ -1,7 +1,7 @@
 <project name="phonegapbuild" default="buildApp">
 	
 	<property name="appDownloadDir" value="${basedir}/target/phonegap"/>
-	<property name="appSourceDir" value="${basedir}/target/rylc-html5"/>
+	<property name="appSourceDir" value="${basedir}/target/html5"/>
     <property name="buildDir" value="${basedir}/target/phonegap-temp"/>
 
     <target name="initApp">
@@ -16,12 +16,7 @@
         <fail message="Property signkey (PhoneGap Build Singkey name) is missing" unless="signkey"/>
         <fail message="Property debug (PhoneGap Build Debug) is missing" unless="debug"/>
 
-        <loadfile srcfile="${appSourceDir}/config.xml" property="configXml"/>
-		<script language="javascript">
-			// <![CDATA[
-			project.setProperty("appTitle", configXml.match(/<name>([^<]+)/)[1]);
-			// ]]>
-		</script>
+        <property name="appTitle" value="${project.name}"/>
 		<echo>App title: ${appTitle}</echo>
 	</target>	
 
@@ -110,10 +105,7 @@
 
     <target name="zipSources" depends="initApp">
         <zip destfile="${buildDir}/source.zip">
-            <fileset dir="${appSourceDir}">
-                <exclude name="META-INF/**"/>
-                <exclude name="WEB-INF/**"/>
-            </fileset>
+            <fileset dir="${appSourceDir}"/>
         </zip>
     </target>
 
@@ -212,5 +204,4 @@
 	<target name="downloadApp" depends="downloadAndroid, downloadWinphone, downloadIos, downloadSymbian, downloadWebos, downloadBlackberry"/>
 		
 	<target name="buildApp" depends="updateApp, createApp, waitForBuild, downloadApp"/>
-
 </project>

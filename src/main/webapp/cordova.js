@@ -1,1 +1,5 @@
-// This file will be replaces by the real cordova.js during the build process!
+window.cordovaProxyConfig = {
+  url: '/rylc-html5/cometd',
+  channel: 'default'
+};
+document.write('<script type="text/javascript" src="cordova.proxy.js"></script>');

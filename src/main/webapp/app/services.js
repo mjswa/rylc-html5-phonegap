@@ -1,5 +1,5 @@
-define(["app/utilsService", "app/backendService", "app/rentalService"],
-  function (utilsServiceFactory, backendServiceFactory, rentalServiceFactory) {
+define(["app/utilsService", "app/backendService", "app/phonegapService", "app/rentalService"],
+  function (utilsServiceFactory, backendServiceFactory, phonegapServiceFactory, rentalServiceFactory) {
 
   function configureHttp($httpProvider) {
     $httpProvider.defaults.headers.post = {'Content-Type':'application/json'};
@@ -10,6 +10,7 @@ define(["app/utilsService", "app/backendService", "app/rentalService"],
   module.config(configureHttp);
   module.factory("utilsService", utilsServiceFactory);
   module.factory("backendService", backendServiceFactory);
+  module.factory("phonegapService", phonegapServiceFactory);
   module.factory("rentalService", rentalServiceFactory);
 
 });

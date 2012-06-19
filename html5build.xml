@@ -91,6 +91,18 @@
         </java>
     </target>
 
-    <target name="buildHtml5" depends="htmlConcat, htmlMinify, js, cssConcat, cssMinify"/>
+    <target name="copyResources">
+        <copy todir="${outputDir}">
+            <fileset dir="${sourceDir}" includes="*.xml"/>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+        <copy todir="${outputDir}">
+            <fileset dir="${sourceDir}" includes="**/*.gif, **/*.png"/>
+        </copy>
+    </target>
+
+    <target name="buildHtml5" depends="copyResources, htmlConcat, htmlMinify, js, cssConcat, cssMinify"/>
 
 </project>
