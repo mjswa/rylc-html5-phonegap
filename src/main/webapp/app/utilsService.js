@@ -102,25 +102,20 @@ define(function() {
     var formatDate = supportsHtml5Date() ? formatHtml5Date : formatSimpleDate;
     var validateDate = supportsHtml5Date() ? validateHtml5Date : validateSimpleDate;
 
-    // Important: Check only once, as after that, jquery mobile
-    // loads the pages when needed!
-    var embeddedMode = $("#welcomePage").length>0;
-    function embeddingAwareNavigate(url) {
-      var args = Array.prototype.slice.call(arguments);
-      if (url!="back") {
-        if (embeddedMode) {
-          var lastColon = url.lastIndexOf(':');
-          if (lastColon===-1) {
-            args[0] = '#'+url;
-          } else {
-            args[0] = url.substring(0, lastColon+1)+'#'+url.substring(lastColon+1);
-          }
-        } else {
-          args[0] += '.html';
+    function patchJqmToLookupEmbeddedPagesInOwnHtmlFiles() {
+      var _loadPage = $.mobile.loadPage;
+      var path = $.mobile.path;
+      $.mobile.loadPage = function(url, options) {
+        var originalUrl = url;
+        var dataUrl = path.convertUrlToDataUrl(url);
+
+        if (!path.isPath(dataUrl) && !document.getElementById(dataUrl)) {
+          url = dataUrl+".html";
         }
-      }
-      return $navigate.apply(this, args);
+        return _loadPage.call(this, url, options);
+      };
     }
+    patchJqmToLookupEmbeddedPagesInOwnHtmlFiles();
 
     return {
       parseSimpleDate: parseSimpleDate,
@@ -133,8 +128,7 @@ define(function() {
       formatDate: formatDate,
       validateDate: validateDate,
       dayCount: dayCount,
-      builder: builder,
-      embeddingAwareNavigate: embeddingAwareNavigate
+      builder: builder
     };
   }
 

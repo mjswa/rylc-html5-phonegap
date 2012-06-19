@@ -8,8 +8,8 @@
         <div class="error" ngm-if="rental.errorMessage">{{rental.errorMessage}}</div>
         <div class="success" ngm-if="rental.successMessage">{{rental.successMessage}}</div>
         <a href="" data-role="button" class="newRental" ngm-click="rental.initRental()">Neue Buchung</a>
-        <a href="" ngm-click="rental.navigateTo('rentalHistoryPage')" data-role="button" class="rentalHistory">Buchungen</a>
-        <a href="" ngm-click="rental.navigateTo('profilePage')" data-role="button" class="profile">Benutzerprofil</a>
+        <a href="#rentalHistoryPage" data-role="button" class="rentalHistory">Buchungen</a>
+        <a href="#profilePage" data-role="button" class="profile">Benutzerprofil</a>
         <a href="" ngm-click="rental.scanPromo()" data-role="button" class="promo">Promocode</a>
     </div>
 </div>

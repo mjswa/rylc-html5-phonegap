@@ -1,9 +1,9 @@
 define(function () {
-  function AuthenticationController($scope, backendService, utilsService) {
+  function AuthenticationController($scope, backendService, $navigate) {
 
     $scope.login = function () {
       return backendService.login($scope.server, $scope.username, $scope.password).then(function () {
-        utilsService.embeddingAwareNavigate('welcomePage');
+        $navigate('#welcomePage');
       }, function (errorMessage) {
         $scope.errorMessage = errorMessage;
       });
@@ -23,7 +23,7 @@ define(function () {
 
   }
 
-  AuthenticationController.$inject = ['$scope', 'backendService', 'utilsService'];
+  AuthenticationController.$inject = ['$scope', 'backendService', '$navigate'];
 
   return AuthenticationController;
 });

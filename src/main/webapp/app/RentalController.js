@@ -1,14 +1,10 @@
 define(function () {
-  function RentalController($scope, rentalService, backendService, utilsService, phonegapService) {
+  function RentalController($scope, rentalService, backendService, $navigate, phonegapService) {
     var SUCCESS_MESSAGE = "Bestellung erfolgreich entgegengenommen.";
 
     $scope.clearMessages = function () {
       $scope.successMessage = null;
       $scope.errorMessage = null;
-    };
-
-    $scope.navigateTo = function(url) {
-      utilsService.embeddingAwareNavigate(url);
     };
 
     $scope.prefetchMasterData = function () {
@@ -35,14 +31,14 @@ define(function () {
       }, function (errorMessage) {
         $scope.errorMessage = errorMessage;
       });
-      $scope.navigateTo('rental1Page');
+      $navigate('#rental1Page');
     };
 
     $scope.searchAvailableCars = function () {
       return backendService.availableCars($scope.city.id, $scope.startDate, $scope.endDate, $scope.maxPrice).then(
         function (cars) {
           $scope.availableCars = cars;
-          $scope.navigateTo("rental2Page");
+          $navigate("#rental2Page");
         }, function (errorMessage) {
           $scope.errorMessage = errorMessage;
         });
@@ -58,7 +54,7 @@ define(function () {
 
     $scope.selectCar = function (car) {
       $scope.car = car;
-      $scope.navigateTo('rental3Page');
+      $navigate('#rental3Page');
     };
 
     $scope.rentCar = function () {
@@ -66,10 +62,10 @@ define(function () {
         function (rental) {
           $scope.rental = rental;
           $scope.successMessage = SUCCESS_MESSAGE;
-          $scope.navigateTo('back:welcomePage');
+          $navigate('back:#welcomePage');
         }, function (errorMessage) {
           $scope.errorMessage = errorMessage;
-          $scope.navigateTo('back:welcomePage');
+          $navigate('back:#welcomePage');
         });
     };
 
@@ -99,7 +95,7 @@ define(function () {
     }
   }
 
-  RentalController.$inject = ['$scope', 'rentalService', 'backendService', 'utilsService', 'phonegapService'];
+  RentalController.$inject = ['$scope', 'rentalService', 'backendService', '$navigate', 'phonegapService'];
 
   return RentalController;
 });

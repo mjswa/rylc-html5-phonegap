@@ -1,4 +1,5 @@
-describeUi('promo', '/rylc-html5/index.html#/rylc-html5/welcomePage.html', function () {
+/*
+describeUi('promo', '/rylc-html5/index.html#welcomePage', function () {
   beforeLoad(function () {
     mockBackend();
     mockPhonegap();
@@ -53,4 +54,4 @@ describeUi('promo', '/rylc-html5/index.html#/rylc-html5/welcomePage.html', funct
 
   });
 });
-
+*/

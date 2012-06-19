@@ -1,4 +1,4 @@
-describeUi('welcome', '/rylc-html5/index.html#/rylc-html5/welcomePage.html', function () {
+describeUi('welcome', '/rylc-html5/index.html#welcomePage', function () {
   var authenticatedCustomer = { id:42, name:"someName" };
 
   beforeLoad(function () {

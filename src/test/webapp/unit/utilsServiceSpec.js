@@ -107,43 +107,4 @@ describe("utilsService", function () {
       expect(callback).toHaveBeenCalledWith(props, [arg1, arg2]);
     }));
   });
-
-  describe('embeddingAwareNavigate', function() {
-    describe('not embedded mode', function() {
-      it('should add .html', inject(function(utilsService) {
-        var somePage = 'somePage';
-        utilsService.embeddingAwareNavigate(somePage);
-        expect($navigate).toHaveBeenCalledWith(somePage+'.html');
-      }));
-
-      it('should not add .html for "back"', inject(function(utilsService) {
-        utilsService.embeddingAwareNavigate("back");
-        expect($navigate).toHaveBeenCalledWith("back");
-      }));
-    });
-
-    describe('embedded mode', function() {
-      var welcomePage;
-      beforeEach(function() {
-        welcomePage = $('<div id="welcomePage"></div>');
-        $("body").append(welcomePage);
-      });
-      afterEach(function() {
-        welcomePage.remove();
-      });
-      it('should prepend a hash', inject(function(utilsService) {
-        var somePage = 'somePage';
-        utilsService.embeddingAwareNavigate(somePage);
-        expect($navigate).toHaveBeenCalledWith("#"+somePage);
-      }));
-      it("should prepend the hash before the page even when used with transitions", inject(function(utilsService) {
-        utilsService.embeddingAwareNavigate('back:somePage');
-        expect($navigate).toHaveBeenCalledWith('back:#somePage');
-      }));
-      it('should not add .html for "back"', inject(function(utilsService) {
-        utilsService.embeddingAwareNavigate("back");
-        expect($navigate).toHaveBeenCalledWith("back");
-      }));
-    });
-  });
 });

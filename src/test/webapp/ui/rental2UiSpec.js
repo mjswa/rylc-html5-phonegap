@@ -1,4 +1,4 @@
-describeUi('rental2', '/rylc-html5/index.html#/rylc-html5/welcomePage.html', function () {
+describeUi('rental2', '/rylc-html5/index.html#welcomePage', function () {
   var authenticatedCustomer = { id:42, name:"someName" };
   var someCities = [
     {id:10, name:'City A'}

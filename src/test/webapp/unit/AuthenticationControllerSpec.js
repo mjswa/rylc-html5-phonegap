@@ -40,7 +40,7 @@ describe('AuthenticationController', function () {
       loginResultDeferred.resolve();
       scope.login();
       $rootScope.$digest();
-      expect($navigate).toHaveBeenCalledWith('welcomePage.html');
+      expect($navigate).toHaveBeenCalledWith('#welcomePage');
     }));
 
     it('should update errorMessage property', inject(function ($rootScope) {
