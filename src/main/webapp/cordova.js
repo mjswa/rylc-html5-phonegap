@@ -1,7 +1,5 @@
 (function () {
-  if (window.jasmineui) {
-    return;
-  }
+  if (window.jasmineui) return;
   window.cordovaProxyConfig = {
     url:'/rylc-html5/cometd',
     channel:'default'

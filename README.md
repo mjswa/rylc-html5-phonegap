@@ -1,8 +1,8 @@
 # README zu rylc-html5 #
 
 Das Frontend hat eine Maven-Dependency zu rylc-backend-jar.
-Um diese Projekt bauen zu können, bitte zunächst folgendes Projekt auschecken:
 
-https://svn.opitz-consulting.de/repos/samples-ocmcomp/rylc-backend/branches/multimodule
+Beispiel Promo-Codes:
+- OK: https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=rylctest&choe=UTF-8
+- Fehlerhaft: https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=fehlertest&choe=UTF-8
 
-und mit `mvn clean install` bauen.

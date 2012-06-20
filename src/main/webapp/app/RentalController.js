@@ -76,11 +76,9 @@ define(function () {
     function afterScan(scanResult) {
       scanResult.then(function (promoCode) {
         afterPromoCheck(backendService.promo(promoCode));
-      }, function (scanError) {
-        if (!scanError.canceled) {
+      }, function () {
           $scope.successMessage = '';
           $scope.errorMessage = 'Fehler beim Scan';
-        }
       });
     }
 

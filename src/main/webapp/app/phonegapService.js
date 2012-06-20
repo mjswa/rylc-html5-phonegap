@@ -1,25 +1,21 @@
 define(function () {
-  function phonegapServiceFactory($q, $rootScope, $exceptionHandler) {
+  function phonegapServiceFactory($q, $rootScope) {
     function scan() {
       var defer = $q.defer();
-      cordova.exec(createsSanSuccess(defer), createScanError(defer), "BarcodePlugin", "scan", []);
+
+      function success(data) {
+        $rootScope.$apply(function() {
+          defer.resolve(data);
+        });
+      }
+      function error(message) {
+        $rootScope.$apply(function() {
+          defer.reject(message);
+        });
+      }
+
+      cordova.exec(success, error, "BarcodePlugin", "scan", []);
       return defer.promise;
-    }
-
-    function createsSanSuccess(defer) {
-      return function(data) {
-        $rootScope.$apply(function() {
-          defer.resolve(data.text);
-        });
-      }
-    }
-
-    function createScanError(defer) {
-      return function(data) {
-        $rootScope.$apply(function() {
-          defer.reject(data);
-        });
-      }
     }
 
     return {
@@ -27,7 +23,7 @@ define(function () {
     }
   }
 
-  phonegapServiceFactory.$inject = ["$q", "$rootScope", "$exceptionHandler"];
+  phonegapServiceFactory.$inject = ["$q", "$rootScope"];
 
   return phonegapServiceFactory;
 });
