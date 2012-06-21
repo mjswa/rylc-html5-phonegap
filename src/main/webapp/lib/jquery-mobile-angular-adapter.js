@@ -1095,7 +1095,6 @@
           }
           // Note: need to be parent() as jquery cannot trigger events on comments
           // (angular creates a comment node when using transclusion, as ng-repeat does).
-          var elem =  iterStartElement.parent();
           iterStartElement.parent().trigger("$childrenChanged");
         });
       };

@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jasmine Test Runner</title>
-    <meta charset="utf-8">
+  <title>Jasmine Test Runner</title>
+  <meta charset="utf-8">
 
-    <link rel="stylesheet" href="lib/jasmine.css">
+  <link rel="stylesheet" href="lib/jasmine.css">
 
-    <script src="lib/require.js"></script>
+  <script src="lib/require.js"></script>
 </head>
 <body>
 <script>
-    require(["main"], function () {
-        require([
-            // Test Libraries
-            "lib/order!lib/jasmine",
-            "lib/order!lib/jasmine-html",
-            "lib/order!lib/angular-mocks",
-            // Tests
-            "lib/order!unit/JSONParseDateSpec",
-            "lib/order!unit/AuthenticationControllerSpec",
-            "lib/order!unit/utilsServiceSpec.js",
-            "lib/order!unit/backendServiceSpec.js"], function () {
-                var trivialReporter = new jasmine.TrivialReporter();
-                jasmine.getEnv().addReporter(trivialReporter);
-                jasmine.getEnv().specFilter = function (spec) {
-                    return trivialReporter.specFilter(spec);
-                };
-                jasmine.getEnv().execute();
-        });
+  require(["main"], function () {
+    require([
+      // Test Libraries
+      "lib/order!lib/jasmine",
+      "lib/order!lib/jasmine-html",
+      "lib/order!lib/angular-mocks",
+      // Tests
+      "lib/order!unit/JSONParseDateSpec",
+      "lib/order!unit/jqmExternalAsEmbeddedPagesSpec",
+      "lib/order!unit/AuthenticationControllerSpec",
+      "lib/order!unit/utilsServiceSpec.js",
+      "lib/order!unit/backendServiceSpec.js",
+      "lib/order!unit/rentalServiceSpec.js"], function () {
+      var trivialReporter = new jasmine.TrivialReporter();
+      jasmine.getEnv().addReporter(trivialReporter);
+      jasmine.getEnv().specFilter = function (spec) {
+        return trivialReporter.specFilter(spec);
+      };
+      jasmine.getEnv().execute();
     });
+  });
 </script>
 </body>
 </html>

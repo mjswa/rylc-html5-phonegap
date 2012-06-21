@@ -2023,7 +2023,7 @@ if (!window.jasmine) {
     };
 
     jasmine.Spec.prototype.fail = function (e) {
-      var expectationResult = new jasmine.ExpectationResult({
+        var expectationResult = new jasmine.ExpectationResult({
             passed: false,
             message: e ? jasmine.util.formatException(e) : 'Exception',
             trace: { stack: e.stack }
@@ -3653,10 +3653,6 @@ jasmineui.define('describeUiServer', ['config', 'jasmineApi', 'persistentData', 
             var specs = this.specs();
             for (var i=0; i<specs.length; i++) {
                 var spec = specs[i];
-                if (!spec.env.specFilter(spec)) {
-                  spec.results_.skipped = true;
-                  continue;
-                }
                 var _pageUrl = pageUrl(spec.suite);
                 if (_pageUrl) {
                     pd.specs.push({

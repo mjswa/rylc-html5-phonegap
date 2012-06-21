@@ -1,13 +1,7 @@
 describe("utilsService", function () {
 
-  var $navigate;
   beforeEach(function () {
-    $navigate = jasmine.createSpy('$navigate');
-    module('rylc-services', function($provide) {
-      $provide.factory('$navigate', function () {
-        return $navigate;
-      });
-    });
+    module('rylc-services');
   });
 
   describe("parseSimpleDate", function () {

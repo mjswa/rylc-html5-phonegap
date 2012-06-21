@@ -2,7 +2,7 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "${project.groupId}"
-        version   = "${project.version.phonegap}">
+        version   = "${phonegap.project.version}">
 
     <name>${project.name}</name>
     <description>${project.description}</description>

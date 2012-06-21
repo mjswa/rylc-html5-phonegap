@@ -1,5 +1,5 @@
 define(function() {
-  function utilsServiceFactory($navigate) {
+  function utilsServiceFactory() {
 
     function parseSimpleDate(dateAsString) {
       if (!dateAsString) {
@@ -102,21 +102,6 @@ define(function() {
     var formatDate = supportsHtml5Date() ? formatHtml5Date : formatSimpleDate;
     var validateDate = supportsHtml5Date() ? validateHtml5Date : validateSimpleDate;
 
-    function patchJqmToLookupEmbeddedPagesInOwnHtmlFiles() {
-      var _loadPage = $.mobile.loadPage;
-      var path = $.mobile.path;
-      $.mobile.loadPage = function(url, options) {
-        var originalUrl = url;
-        var dataUrl = path.convertUrlToDataUrl(url);
-
-        if (!path.isPath(dataUrl) && !document.getElementById(dataUrl)) {
-          url = dataUrl+".html";
-        }
-        return _loadPage.call(this, url, options);
-      };
-    }
-    patchJqmToLookupEmbeddedPagesInOwnHtmlFiles();
-
     return {
       parseSimpleDate: parseSimpleDate,
       formatSimpleDate: formatSimpleDate,
@@ -131,8 +116,6 @@ define(function() {
       builder: builder
     };
   }
-
-  utilsServiceFactory.$inject = ["$navigate"];
 
   return utilsServiceFactory;
 });

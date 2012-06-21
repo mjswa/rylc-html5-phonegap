@@ -5,8 +5,6 @@ define(function () {
       0:'Ein unbekannter Fehler ist aufgetreten.'
     };
 
-    var basePath = location.href;
-
     var backendBaseUri = '/rylc-html5/api';
     var backendBaseUrl = '';
 

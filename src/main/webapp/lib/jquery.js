@@ -2,6 +2,8 @@
  * jQuery JavaScript Library v1.7.1
  * http://jquery.com/
  *
+ * Patched with http://code.google.com/p/chromium/issues/detail?id=125148
+ *
  * Copyright 2011, John Resig
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
@@ -240,16 +242,11 @@ jQuery.fn = jQuery.prototype = {
 	// (returning the new matched element set)
 	pushStack: function( elems, name, selector ) {
 		// Build a new jQuery matched element set
-		// var c = this.constructor;
-    var ret = this.constructor();
-    // ret.tbo = c;
-    try {
-      ret.data();
-    } catch(e) {
-
+		var ret = this.constructor();
+    // Workaround for http://code.google.com/p/chromium/issues/detail?id=125148
+    if (!(ret instanceof jQuery.fn.init)) {
+      ret = new jQuery.fn.init();
     }
-    ret.tbo2 = this;
-    ret.tbo3 = this.constructor();
 
 		if ( jQuery.isArray( elems ) ) {
 			push.apply( ret, elems );
@@ -5540,8 +5537,6 @@ jQuery.each({
 
 		if ( (this.length > 1 || rmultiselector.test( selector )) && rparentsprev.test( name ) ) {
 			ret = ret.reverse();
-      console.log("now");
-      // alert("now");
 		}
 
 		return this.pushStack( ret, name, slice.call( arguments ).join(",") );

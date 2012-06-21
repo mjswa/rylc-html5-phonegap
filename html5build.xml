@@ -40,7 +40,7 @@
     <target name="jsConcat">
         <!-- Concat all javascript files into one file -->
         <java classpathref="classpathId" classname="org.mozilla.javascript.tools.shell.Main">
-            <arg value="${basedir}/build/r.js"/>
+            <arg value="${basedir}/misc/requirejs/r.js"/>
             <arg value="-o"/>
             <arg value="baseUrl=src/main/webapp"/>
             <arg value="name=lib/almond"/>
@@ -76,7 +76,7 @@
     <target name="cssConcat">
         <!-- Concat all css includes into one file -->
         <java classpathref="classpathId" classname="org.mozilla.javascript.tools.shell.Main">
-            <arg value="${basedir}/build/r.js"/>
+            <arg value="${basedir}/misc/requirejs/r.js"/>
             <arg value="-o"/>
             <arg value="cssIn=src/main/webapp/main.css"/>
             <arg value="out=${outputDir}/main.css"/>
