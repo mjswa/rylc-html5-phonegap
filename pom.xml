@@ -73,9 +73,6 @@
                                     <property name="classpath" value="${classpath}"/>
                                     <property name="minify" value="${html5.minify}"/>
                                 </ant>
-                                <zip destfile="${basedir}/target/html5.zip"
-                                     basedir="${basedir}/target/html5"/>
-                                <attachartifact file="${basedir}/target/html5.zip" classifier="html5" type="zip"/>
                             </target>
                         </configuration>
                         <goals>
