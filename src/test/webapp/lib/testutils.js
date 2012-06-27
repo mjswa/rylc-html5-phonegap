@@ -85,7 +85,8 @@ jasmineui.inject(function () {
       'availableCars',
       'rentCar',
       'login',
-      'logout'];
+      'logout',
+      'promo'];
 
     function backendServiceFactory($q) {
       var res = {};
@@ -206,6 +207,27 @@ jasmineui.inject(function () {
   }
 
   // -----
+  function mockPhonegap() {
+    var services = ['scan'];
+
+    function phonegapServiceFactory($q) {
+      var res = {};
+      for (var i = 0; i < services.length; i++) {
+        var service = services[i];
+        res[service] = createMockBackendService($q, service);
+      }
+      return res;
+    }
+
+    phonegapServiceFactory.$inject = ['$q'];
+    angular.module(["rylc-services"]).factory('phonegapService', phonegapServiceFactory);
+  }
+
+  function phonegapService() {
+    return $("body").injector().get("phonegapService");
+  }
+
+  // -----
 
   window.mockBackend = mockBackend;
   window.backendService = backendService;
@@ -221,5 +243,9 @@ jasmineui.inject(function () {
 
   window.formatSimpleDate = formatSimpleDate;
   window.formatDate = formatDate;
+
+  window.mockPhonegap = mockPhonegap;
+  window.phonegapService = phonegapService;
+  window.phonegapServiceResult = backendServiceResult;
 
 });

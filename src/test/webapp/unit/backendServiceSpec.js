@@ -458,4 +458,21 @@ describe('backendService', function () {
       expect(backendService.authenticatedCustomer()).toBe(someCustomer);
     });
   });
+
+  describe('promo', function() {
+    it("should accept promo codes that start with 'rylc'", function() {
+      var someCode = 'rylc1234';
+      var callback = jasmine.createSpy("callback");
+      backendService.promo(someCode).then(callback);
+      $rootScope.$digest();
+      expect(callback).toHaveBeenCalledWith('Code '+someCode+' akzeptiert');
+    });
+    it("should deny promo codes that do not start with 'rylc'", function() {
+      var someCode = 'someError';
+      var callback = jasmine.createSpy("callback");
+      backendService.promo(someCode).then(null, callback);
+      $rootScope.$digest();
+      expect(callback).toHaveBeenCalledWith('Code '+someCode+' ungueltig');
+    });
+  });
 });

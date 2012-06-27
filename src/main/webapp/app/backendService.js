@@ -152,7 +152,7 @@ define(function () {
       if (promoCode!=null && promoCode.indexOf('rylc')===0) {
         res.resolve('Code '+promoCode+' akzeptiert');
       } else {
-        res.reject('Code '+promoCode+' ungültig');
+        res.reject('Code '+promoCode+' ungueltig');
       }
       return res.promise;
     }
