@@ -10,7 +10,7 @@ Beispielcode zum Kapitel 10 Hybride Apps im Buch [Mobile Web-Apps mit JavaScript
 *   Bauen der Backend-Komponente:
     *   [rylc-backend](https://github.com/mjswa/rylc-backend) klonen
     *   In das Verzeichnis `rylc-backend-jar` wechseln
-    *   Das Backend mittels `mvn clean install -production` bauen
+    *   Das Backend mittels `mvn clean install -Pproduction` bauen
 *   Bauen und Starten des Android PhoneGap-Containers für ein Profil `<profil>`:
     1.   [rylc-android-phonegap](https://github.com/mjswa/rylc-android-phonegap) klonen
     1.   PhoneGap-Container via `mvn clean install -P<profile> android:deploy android:run` bauen
@@ -29,7 +29,7 @@ Beispielcode zum Kapitel 10 Hybride Apps im Buch [Mobile Web-Apps mit JavaScript
     1.   PhoneGap-Container bauen und starten für das Profil `phonegapproxy` (s.o.).
     1.   Webserver starten: `mvn jetty:run`
     1.   App öffnen, Eingabe von Server `http://<webserver-ip>:8585/rylc-html5/cometd`, Channel `default`, und `Connect`-Button drücken.
-    1.   Im Desktop-Browser die URL [http://localhost:8585/rylc-html5](http://localhost:8585/rylc-html5) öffnen und einloggen.
+    1.   [Startseite](http://localhost:8585/rylc-html5) im Desktop-Browser aufrufen.
 *   Starten des Projekts als native App:
     1.   Projekt bauen: `mvn clean install`
     1.   PhoneGap-Container bauen und starten für das Profil `rylc` (s.o.).
