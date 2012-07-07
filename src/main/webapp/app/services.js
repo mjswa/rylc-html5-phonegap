@@ -1,5 +1,5 @@
-define(["app/utilsService", "app/backendService", "app/phonegapService", "app/rentalService"],
-  function (utilsServiceFactory, backendServiceFactory, phonegapServiceFactory, rentalServiceFactory) {
+define(["angular", "app/utilsService", "app/backendService", "app/phonegapService", "app/rentalService"],
+  function (angular, utilsServiceFactory, backendServiceFactory, phonegapServiceFactory, rentalServiceFactory) {
 
   function configureHttp($httpProvider) {
     $httpProvider.defaults.headers.post = {'Content-Type':'application/json'};

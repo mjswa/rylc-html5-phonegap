@@ -141,7 +141,11 @@ jasmineui.inject(function () {
     if (element.length !== 1) {
       throw new Error("No unique element found for " + selector);
     }
-    element.click();
+    if (element.attr("type")==="submit") {
+      element.submit();
+    } else {
+      element.click();
+    }
     element.scope().$root.$digest();
   }
 
