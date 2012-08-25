@@ -9,7 +9,7 @@ Beispielcode zum Kapitel 10 Hybride Apps im Buch [Mobile Web-Apps mit JavaScript
     *   Android SDK.
 *   Bauen der Backend-Komponente:
     *   [rylc-backend](https://github.com/mjswa/rylc-backend) klonen
-    *   In das Verzeichnis `rylc-backend-jar` wechseln
+    *   In das Verzeichnis `rylc-backend` wechseln
     *   Das Backend mittels `mvn clean install -Pproduction` bauen
 *   Bauen und Starten des Android PhoneGap-Containers für ein Profil `<profil>`:
     1.   [rylc-android-phonegap](https://github.com/mjswa/rylc-android-phonegap) klonen
